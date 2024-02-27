@@ -4,6 +4,7 @@ function ProductDetail({ product }) {
   return (
     <div className="mx-5">
       <div className="d-flex">
+        {/* Redirect back to home (better UX) */}
         <Link to="/" className="text-dark">
           products
         </Link>

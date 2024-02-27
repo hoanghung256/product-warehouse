@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Products({ setProductDetail }) {
+  // Declare a state with init value is an array []
   const [products, setProducts] = useState([]);
 
+  // UseEffect run finally when a component is rendered
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/products")
+      .get("api/products")
       .then((res) => {
-        console.log(res.data);
+        // then() run after front-end receive the response back from back-end
         setProducts(res.data);
       })
       .catch((err) => console.log(err));
@@ -22,6 +24,7 @@ function Products({ setProductDetail }) {
           products.map((p) => (
             <div key={p.id} className="col-6 col-md-4 col-lg-2">
               <div className="border border-dark rounded-1 mt-3">
+                {/* Link is a component from react-router-dom using for navigate to another route*/}
                 <Link
                   to={`products/${p.id}`}
                   className="nav-link"

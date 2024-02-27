@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 function App() {
+  // This state use for set detail when click to product
   const [productDetail, setProductDetail] = useState(null);
 
   return (
