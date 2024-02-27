@@ -1,7 +1,8 @@
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
+import Products from "./components/Products";
+import ProductDetail from "./components/ProductDetail";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import InputForm from "./components/InputForm";
 
 function App() {
   // This state use for set detail when click to product
@@ -17,6 +18,10 @@ function App() {
         <Route
           path="/products/:productId"
           element={<ProductDetail product={productDetail} />}
+        />
+        <Route
+          path="/form"
+          element={<InputForm  />}
         />
       </Routes>
     </div>

@@ -45,12 +45,32 @@ public class ProductDAO extends SQLDatabase {
         return res;
     }
     
+    public Product get(int id) {
+        Product res = new Product();
+        
+        try {
+            ResultSet rs = executeQueryPreparedStatement("SELECT * FROM " + table + " WHERE id=?", id);
+            
+            while (rs.next()) {
+                res.setId(rs.getInt("id"));
+                res.setName(rs.getNString("name"));
+                res.setQuantity(rs.getInt("quantity"));
+                res.setPrice(rs.getInt("price"));
+                res.setImagePath(rs.getNString("image") );
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, e);
+        } 
+        
+        return res;
+    }
+    
     public void add(String name, int quantity, int price) {
         executePreparedStatement("INSERT INTO " + table + " (name, quantity, price) VALUES (?, ?, ?)", 
                 name, quantity, price);
     }
     
-    public boolean delete(String id) {
+    public boolean delete(int id) {
         executePreparedStatement("DELETE FROM " + table + " WHERE id=?", id);
         return true;
     }

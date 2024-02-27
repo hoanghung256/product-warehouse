@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import InputForm from "./InputForm";
 
 function Products({ setProductDetail }) {
   // Declare a state with init value is an array []
   const [products, setProducts] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   // UseEffect run finally when a component is rendered
   useEffect(() => {
     axios
-      .get("api/products")
+      .get("/api/products")
       .then((res) => {
         // then() run after front-end receive the response back from back-end
         setProducts(res.data);
@@ -43,6 +45,10 @@ function Products({ setProductDetail }) {
               </div>
             </div>
           ))}
+      </div>
+      <div className="w-25">
+        <button onClick={() => setShowForm(true)}>Add</button>
+        <div>{showForm === true ? <InputForm action="add" setProducts={setProducts}/> : ""}</div>
       </div>
     </div>
   );
