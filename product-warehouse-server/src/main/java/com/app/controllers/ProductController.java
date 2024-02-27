@@ -19,26 +19,29 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "ProductController", urlPatterns = {"/api/products"})
 public class ProductController extends  HttpServlet {
-    public static final ProductDAO dbContext = Configuration.products;
+    private static final ProductDAO dbContext = Configuration.products;
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
-        String deletId = req.getParameter("id");
-        if (dbContext.delete(deletId)) {
-            out.print("delete success");
+        int deleteId = Integer.parseInt(req.getParameter("id"));
+        if (dbContext.delete(deleteId)) {
+            out.print("Delete succeed");
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter out = resp.getWriter();
         try {
             String name = req.getParameter("name");
             int quantity = Integer.parseInt(req.getParameter("quantity"));
             int price = Integer.parseInt(req.getParameter("price"));
             
             dbContext.add(name, quantity, price);
+            out.print("Create new product succeed");
         } catch (NumberFormatException e) {
+            out.print("Create new product failed");
             Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -52,9 +55,10 @@ public class ProductController extends  HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Product p = new Product();
         try {
-            p.setId(Integer.parseInt(req.getParameter("id")));
+            int id = Integer.parseInt(req.getParameter("id"));
+            Product p = dbContext.get(id);
+            
 
             String[] parameters = {"name", "quantity", "price", "image"};
             for (String parameter : parameters) {
