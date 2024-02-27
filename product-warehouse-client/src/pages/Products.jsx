@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
-import PRODUCTS from "../data/products";
+import { useEffect, useState } from "react"
 
 function Products({ productList }) {
   const [products, setProducts] = useState(productList);
   
+  useEffect(() => {
+
+  }, [])
 
   return (
     <div>
       {products.map((p) => (
-        <div>
+        <div key={p.id}>
           <div>{p.name}</div>
           <div>{p.quantity}</div>
           <div>{p.price}</div>
