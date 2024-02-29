@@ -1,12 +1,18 @@
 import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import UpdateProductForm from "./UpdateProductForm";
+import { toast } from "react-toastify";
 
 function ProductDetail({ product }) {
-  function handleDelete(productId) {
-    axios
-      .delete(`/api/products?id=${productId}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+  const [showForm, setShowForm] = useState(false);
+  async function handleDelete(productId) {
+    const res = await axios.delete(`/api/products?id=${productId}`);
+    if (res.data.status === 0) {
+      toast.success(res.data.result);
+    } else {
+      toast.error(res.data.result);
+    }
   }
 
   return (
@@ -33,7 +39,10 @@ function ProductDetail({ product }) {
       </div>
       <div>
         <button onClick={() => handleDelete(product.id)}>Delete</button>
-        <button>Update</button>
+        <button onClick={() => setShowForm(true)}>Update</button>
+      </div>
+      <div>
+        {showForm === true ? <UpdateProductForm product={product} /> : ""}
       </div>
     </div>
   );
