@@ -22,6 +22,13 @@ public class Product {
         this.price = price;
         this.imagePath = imagePath;
     }
+    
+    public Product(int id, String name, int quantity, int price) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     public Product(int id, String name, int quantity, int price, String imagePath) {
         this.id = id;
