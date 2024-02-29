@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import InputForm from "./InputForm";
+import AddProductForm from "./AddProductForm";
 
 function Products({ setProductDetail }) {
   // Declare a state with init value is an array []
@@ -48,7 +48,7 @@ function Products({ setProductDetail }) {
       </div>
       <div className="w-25">
         <button onClick={() => setShowForm(true)}>Add</button>
-        <div>{showForm === true ? <InputForm action="add" setProducts={setProducts}/> : ""}</div>
+        <div>{showForm === true ? <AddProductForm /> : ""}</div>
       </div>
     </div>
   );
