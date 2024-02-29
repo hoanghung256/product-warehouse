@@ -3,15 +3,21 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css"; // Import bootstrap file for global access
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+// Config axios content type for http request
+axios.defaults.headers.post["Content-Type"] =
+  "application/x-www-form-urlencoded";
+axios.defaults.headers.put["Content-Type"] =
+  "application/x-www-form-urlencoded";
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ToastContainer /> {/** ToastContainer to use toast */}
+    <App />
   </React.StrictMode>
 );
 
