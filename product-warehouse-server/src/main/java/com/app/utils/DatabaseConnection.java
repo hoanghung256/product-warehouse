@@ -30,7 +30,7 @@ public class DatabaseConnection {
         }
         return null;
     }
-
+    
     public static void setDaoConnection() throws NoSuchMethodException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException {
         conn = generateConnection();
 

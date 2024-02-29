@@ -7,7 +7,15 @@ import com.app.Configuration;
  * @author hoang hung
  */
 public class StatusDto {
+    /**
+     * Status of response
+     * 0: request preform successfully 
+     * 1: request preform failed
+     */
     private int status;
+    /**
+     * Message of response
+     */
     private Object result;
 
     public StatusDto(int status, Object result) {
