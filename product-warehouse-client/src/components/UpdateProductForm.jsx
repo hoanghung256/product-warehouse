@@ -11,7 +11,7 @@ function UpdateProductForm({ product, setProductDetail, setShowForm }) {
     );
 
     if (res.data.status === 0) {
-      toast.success("Add product successfully!");
+      toast.success("Update product successfully!");
       setProductDetail(data);
       setShowForm(false);
     } else {
