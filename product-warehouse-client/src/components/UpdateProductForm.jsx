@@ -2,13 +2,18 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-function UpdateProductForm({ product }) {
+function UpdateProductForm({ product, setProductDetail, setShowForm }) {
   const [data, setData] = useState(product);
 
   async function handleUpdate() {
-    const res = await axios.put("/api/products", data);
-    if ((res.data.status = 0)) {
+    const res = await axios.put(
+      `/api/products?id=${data.id}&name=${data.name}&price=${data.price}&quantity=${data.quantity}`
+    );
+
+    if (res.data.status === 0) {
       toast.success("Add product successfully!");
+      setProductDetail(data);
+      setShowForm(false);
     } else {
       toast.error(res.data.result);
     }
