@@ -6,7 +6,6 @@ import AddProductForm from "./AddProductForm";
 function Products({ setProductDetail }) {
   // Declare a state with init value is an array []
   const [products, setProducts] = useState([]);
-  const [showForm, setShowForm] = useState(false);
 
   // UseEffect run finally when a component is rendered
   useEffect(() => {
@@ -21,6 +20,11 @@ function Products({ setProductDetail }) {
 
   return (
     <div className="container-fluid">
+      <div className="w-25">
+        <Link to={"/addProduct"} className="btn btn-primary">
+          Add
+        </Link>
+      </div>
       <div className="row">
         {products &&
           products.map((p) => (
@@ -45,10 +49,6 @@ function Products({ setProductDetail }) {
               </div>
             </div>
           ))}
-      </div>
-      <div className="w-25">
-        <button onClick={() => setShowForm(true)}>Add</button>
-        <div>{showForm === true ? <AddProductForm /> : ""}</div>
       </div>
     </div>
   );

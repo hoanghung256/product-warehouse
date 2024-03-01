@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function AddProductForm() {
   const [data, setData] = useState({
@@ -21,6 +22,7 @@ function AddProductForm() {
 
   return (
     <div className="d-flex flex-column">
+      <Link to={"/"}>Home</Link>
       <label>Name</label>
       <input
         type="text"
