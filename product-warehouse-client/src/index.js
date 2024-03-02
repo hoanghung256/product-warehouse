@@ -16,7 +16,7 @@ axios.defaults.headers.put["Content-Type"] =
   "application/x-www-form-urlencoded";
 root.render(
   <React.StrictMode>
-    <ToastContainer /> {/** ToastContainer to use toast */}
+    <ToastContainer /> {/** Call ToastContainer to use toast */}
     <App />
   </React.StrictMode>
 );

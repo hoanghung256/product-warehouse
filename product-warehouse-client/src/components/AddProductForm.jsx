@@ -12,7 +12,7 @@ function AddProductForm() {
 
   async function handleAdd() {
     // React will wait for axios.post() response, then run the rest
-    const res = await axios.post("/api/products", data);
+    const res = await axios.post("/api/products", data); // Pass data like this call pass data in request body
     if (res.data.status === 0) {
       toast.success(res.data.result);
     } else {

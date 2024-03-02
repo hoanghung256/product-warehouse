@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import AddProductForm from "./AddProductForm";
 
 function Products({ setProductDetail }) {
   // Declare a state with init value is an array []
@@ -10,17 +9,18 @@ function Products({ setProductDetail }) {
   // UseEffect run finally when a component is rendered
   useEffect(() => {
     axios
-      .get("/api/products")
+      .get("/api/products") // The front part of url has been config at line 43 package.json
       .then((res) => {
         // then() run after front-end receive the response back from back-end
         setProducts(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, []); // Condition for useEffect run ([] mean useEffect only run 1 time)
 
   return (
     <div className="container-fluid">
       <div className="w-25">
+        {/* Link is a component from react-router-dom using for navigate to another route*/}
         <Link to={"/addProduct"} className="btn btn-primary">
           Add
         </Link>
@@ -30,7 +30,6 @@ function Products({ setProductDetail }) {
           products.map((p) => (
             <div key={p.id} className="col-6 col-md-4 col-lg-2">
               <div className="border border-dark rounded-1 mt-3">
-                {/* Link is a component from react-router-dom using for navigate to another route*/}
                 <Link
                   to={`products/${p.id}`}
                   className="nav-link"

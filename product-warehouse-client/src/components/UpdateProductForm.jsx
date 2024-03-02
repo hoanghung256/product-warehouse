@@ -7,7 +7,7 @@ function UpdateProductForm({ product, setProductDetail, setShowForm }) {
 
   async function handleUpdate() {
     const res = await axios.put(
-      `/api/products?id=${data.id}&name=${data.name}&price=${data.price}&quantity=${data.quantity}`
+      `/api/products?id=${data.id}&name=${data.name}&price=${data.price}&quantity=${data.quantity}` // Pass data like this call pass value in url's parameter (data will be appeared in url path not in the body of request)
     );
 
     if (res.data.status === 0) {
